@@ -13,3 +13,7 @@ Install dependencies
     pip install -r requirements.txt
 
 ```
+
+Donwload the model from huggingface https://huggingface.co/foduucom/stockmarket-future-prediction/tree/main
+
+

@@ -2,7 +2,6 @@ import MetaTrader5 as mt5
 from datetime import datetime
 import pytz
 import pandas as pd
-
 from dotenv.main import load_dotenv
 import os
 
@@ -16,15 +15,12 @@ wamaitha_server=str(os.getenv("DERIV_SERVER"))
 symbol='Crash 1000 Index'
 timezone = pytz.timezone("Etc/UTC")
 
-start_date=datetime(2024, 1, 1, tzinfo=timezone)
-end_date=datetime(2024, 3, 1, tzinfo=timezone)
-
+start_date=datetime(2022, 1, 1, tzinfo=timezone)
+end_date=datetime(2024, 1, 1, tzinfo=timezone)
 symbol_without_spaces= symbol.replace(" ", "")
-
 folder_path_for_symbol= f'./DATA/{symbol_without_spaces}'
 start_date_formatted = start_date.strftime("%Y-%m-%d")
 end_date_formatted = end_date.strftime("%Y-%m-%d")
-
 csv_name_for_symbol=f'{symbol_without_spaces}-{start_date_formatted}-{end_date_formatted}'
 
 
@@ -91,11 +87,11 @@ def save_historic_data(symbol,start_date,end_date,folder_path,csv_name):
     try:
         create_folder(folder_path)
         print(f'Getting the historic data for {symbol} starting from date {start_date} to date {end_date}')
-        timeframe = mt5.TIMEFRAME_M5
+        timeframe = mt5.TIMEFRAME_D1
         raw_data_from_mt5 = mt5.copy_rates_range(str(symbol),timeframe , start_date, end_date)
         df = pd.DataFrame(raw_data_from_mt5)
-        if timeframe == 5 :
-            timeframe = '5Minute'
+        # if timeframe == 5 :
+        #     timeframe = '5Minute'
         csv_path =f'{folder_path}/{csv_name}-{timeframe}.csv'
         df.to_csv(csv_path)
         print(f'✅Data saved successfully to {csv_path}')
@@ -117,4 +113,4 @@ def main():
         error_line(e)
 
 
-main()
+# main()

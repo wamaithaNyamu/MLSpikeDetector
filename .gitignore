@@ -1,3 +1,7 @@
 venv
 .env
 DATA
+.vscode
+__pycache__
+*.pt
+IMAGES
