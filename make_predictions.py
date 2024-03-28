@@ -60,11 +60,10 @@ def backtest(predictions, close_prices, actual_outcome):
                     print("❌Lost Up")
                     lost_count= lost_count + 1  # Incorrect prediction, lost
         return won_count / total * 100
-             
-
     except Exception as e:
         error_line(e)
-        
+
+
 def draw_data(csv_path,images_folder,model):
     """"
     Get data from the csv  and draw  it 
@@ -84,8 +83,7 @@ def draw_data(csv_path,images_folder,model):
         create_folder(images_folder)
           # read csv
         df = pd.read_csv(csv_path)
-        print(df.head(10))        
-
+  
          # Normalise high and low
         columns_to_normalize = ['high','low']
         # Min-Max scaling only on selected columns
@@ -139,7 +137,7 @@ def draw_data(csv_path,images_folder,model):
                     current_preds.append(model.names[class_id])
     
             if chart_counter+bars + 1 < len(df) and len(current_preds)>0 :
-                prediction.append(current_preds[-1])
+                prediction.append(current_preds[0])
                 prediction_close_price.append(df['close'][chart_counter+bars])
                 actual_outcome.append(df['close'][chart_counter+bars+1])
 

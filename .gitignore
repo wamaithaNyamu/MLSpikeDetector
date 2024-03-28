@@ -5,3 +5,4 @@ DATA
 __pycache__
 *.pt
 IMAGES
+LIVEDATA
