@@ -6,3 +6,5 @@ __pycache__
 *.pt
 IMAGES
 LIVEDATA
+*.mp4
+*.json

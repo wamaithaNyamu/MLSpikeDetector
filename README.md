@@ -29,3 +29,13 @@ On a separate terminal
  flask --app app run --debug
 
 ```
+Test the endpoint
+
+```shell
+curl http://127.0.0.1:5000/predict
+```
+
+Add the endpoint to the MQL5 Bot that can be downloaded here https://wamaitha.co/p/aispikedetector 
+
+
+
