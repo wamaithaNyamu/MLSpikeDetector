@@ -6,6 +6,14 @@ Prerequisites:
 - MT5 installed
 - Broker account - Deriv
 
+Create a .env file and add
+
+```shell
+DERIV_ACCOUNT=
+DERIV_PASSWORD=
+DERIV_SERVER=
+
+```
 
 Install dependencies
 
