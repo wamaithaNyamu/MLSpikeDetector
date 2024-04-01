@@ -25,10 +25,10 @@ Install dependencies
 Donwload the model from huggingface https://huggingface.co/foduucom/stockmarket-future-prediction/tree/main
 
 
-Run the scheduler
+Run the scheduler 6 is the hours, and the last string is the symbol
 
 ```shell
- python scheduler.py
+ python scheduler.py  python 6 "Crash 1000 Index"
 ```
 
 On a separate terminal 
@@ -47,3 +47,4 @@ Add the endpoint to the MQL5 Bot that can be downloaded here https://wamaitha.co
 
 
 
+http://127.0.0.1:5000/predict

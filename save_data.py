@@ -11,7 +11,7 @@ load_dotenv()  # take environment variables from .env.
 wamaitha_account = int(os.getenv("DERIV_ACCOUNT"))
 wamaitha_password = str(os.getenv("DERIV_PASSWORD"))
 wamaitha_server = str(os.getenv("DERIV_SERVER"))
-symbol = "Boom 1000 Index"
+symbol = "META"
 timezone = pytz.timezone("Etc/UTC")
 
 start_date = datetime(2022, 1, 1, tzinfo=timezone)
@@ -173,4 +173,4 @@ def main():
         error_line(e)
 
 
-main()
+# main()

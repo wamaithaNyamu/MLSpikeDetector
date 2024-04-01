@@ -1,4 +1,5 @@
 import sched
+import sys
 import time
 import MetaTrader5 as mt5
 from datetime import datetime
@@ -11,12 +12,12 @@ from datetime import datetime,timedelta
 import numpy as np
 from ultralyticsplus import YOLO,render_result
 
-symbol='Crash 1000 Index'
-bars = 100
-time_schedule = 1/60 * 60 * 60
+# symbol='Crash 1000 Index'
+bars = 300
 images_folder_for_symbol=f'LIVEDATA'
 local_model_path = "best.pt"
-
+symbol =''
+time_schedule = 0
 
 scheduler = sched.scheduler(time.time, time.sleep)
 def load_model(model_path):
@@ -79,8 +80,7 @@ def get_prediction(model,df,bars,images_folder=images_folder_for_symbol):
         candle_width = 2  # Adjust the candlestick width as needed
 
         # plot each point 
-        for i in range(start_candle,end_candle):
- 
+        for i in range(start_candle,end_candle): 
             # Calculate rectangle coordinates for the high and low values
             high_y1 = height - 20 - int(scaled_high_values[i - 1])
             high_y2 = height - 20 - int(scaled_high_values[i])
@@ -205,6 +205,18 @@ def repeat_task():
          print("repeat_task")
          error_line(e) 
 
-make_prediction()
-repeat_task()
-scheduler.run()
+if __name__ == "__main__":
+    # Check if the correct number of arguments is provided
+    print(sys.argv, " -  ",len(sys.argv))
+    if len(sys.argv) <= 2:
+        print('Exiting!')
+        sys.exit(1)
+    # Extract arguments from command line
+    time_schedule = int(sys.argv[1]) * 60 * 60
+    symbol = str(sys.argv[2])
+    print("The time is ",time_schedule, " for the ",symbol)
+    make_prediction()
+    repeat_task()
+    scheduler.run()
+
+
