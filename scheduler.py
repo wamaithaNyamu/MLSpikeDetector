@@ -18,7 +18,7 @@ images_folder_for_symbol=f'LIVEDATA'
 local_model_path = "best.pt"
 symbol =''
 time_schedule = 0
-
+file_path = ''
 scheduler = sched.scheduler(time.time, time.sleep)
 def load_model(model_path):
     """
@@ -151,9 +151,9 @@ def update_json_file(prediction):
     @params prediction: the prediction to write to the file
     """
     try:
-        file_path = 'data.json'
         try:
             with open(file_path, 'r') as file:
+                print("-----------------",file_path)
                 data = json.load(file)
         except FileNotFoundError:
             data = {} # If the file doesn't exist, create an empty dictionary
@@ -211,10 +211,30 @@ if __name__ == "__main__":
     if len(sys.argv) <= 2:
         print('Exiting!')
         sys.exit(1)
-    # Extract arguments from command line
-    time_schedule = int(sys.argv[1]) * 60 * 60
-    symbol = str(sys.argv[2])
+    
+    if str(sys.argv[3]) == 'hours' or str(sys.argv[3]) == 'hour':
+       time_schedule = int(sys.argv[2])/1 * 60 * 60
+
+    if str(sys.argv[3]) == 'minutes' or str(sys.argv[3]) == 'minute':
+       time_schedule = int(sys.argv[2])/60 * 60 * 60
+
+    if str(sys.argv[3]) == 'day':
+       time_schedule = int(sys.argv[2])* 60 * 60 * 60
+
+    if str(sys.argv[3]) == 'month':
+       time_schedule = int(sys.argv[2])* 60 * 30 * 60 * 60
+
+    if str(sys.argv[3]) == 'week':
+       time_schedule = int(sys.argv[2])* 60 * 7 * 60 * 60
+    
+    
+    
+    symbol = str(sys.argv[-1])
     print("The time is ",time_schedule, " for the ",symbol)
+    symbol_without_spaces = symbol.replace(" ", "")
+    timeframe = (str(sys.argv[2]) + str(sys.argv[3])).replace(" ", "")
+    file_path = symbol_without_spaces+timeframe+".json"
+    print(file_path)
     make_prediction()
     repeat_task()
     scheduler.run()

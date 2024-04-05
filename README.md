@@ -28,7 +28,7 @@ Donwload the model from huggingface https://huggingface.co/foduucom/stockmarket-
 Run the scheduler 6 is the hours, and the last string is the symbol
 
 ```shell
- python scheduler.py  python 6 "Crash 1000 Index"
+ python scheduler.py  python "6 hours" "Crash 1000 Index"
 ```
 
 On a separate terminal 
@@ -40,7 +40,7 @@ On a separate terminal
 Test the endpoint
 
 ```shell
-curl http://127.0.0.1:5000/predict
+curl http://127.0.0.1:5000/predict/?symbol=Crash1000Index/?tfNumber=6/?tfType=hours
 ```
 
 Add the endpoint to the MQL5 Bot that can be downloaded here https://wamaitha.co/p/aispikedetector 
