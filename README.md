@@ -1,3 +1,6 @@
+
+[![Youtube Walkthrough](https://img.youtube.com/vi/9UZZHxky3E8/0.jpg)](https://youtu.be/9UZZHxky3E8?si=5odfHzZX3m14ALku)
+
 Prerequisites:
 
 - Python 3.10+
